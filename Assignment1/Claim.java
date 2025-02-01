@@ -15,12 +15,15 @@ public class Claim{
         this.claimValue = claimValue;
         this.claimCounter++;
         this.claimNo = claimOwnerInitials + claimCounter;
+        this.disbursed = false;
+        this.claimNote = "";
         
     }
     
     public String getClaimNo(){return this.claimNo; }
     public LocalDate getClaimDate(){return this.claimDate;}
     public double getClaimValue() {return this.claimValue;}
+    public boolean getDisbursed() {return this.disbursed;}
     
     public void disburse(boolean disbursed){
         this.disbursed = disbursed;
