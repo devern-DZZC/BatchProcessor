@@ -3,7 +3,8 @@ import java.text.NumberFormat;
 
 public class Claim{
     private String claimNo;
-    private int claimCounter = 0;
+    private static int counter = 1;
+    private int claimCounter;
     private LocalDate claimDate;
     private LocalDate processedDate;
     private double claimValue;
@@ -13,7 +14,8 @@ public class Claim{
     public Claim(String claimDate, double claimValue, String claimOwnerInitials){
         this.claimDate = LocalDate.parse(claimDate);
         this.claimValue = claimValue;
-        this.claimCounter++;
+        this.claimCounter = this.counter;
+        this.counter++;
         this.claimNo = claimOwnerInitials + claimCounter;
         this.disbursed = false;
         this.claimNote = "";
@@ -21,9 +23,12 @@ public class Claim{
     }
     
     public String getClaimNo(){return this.claimNo; }
+    public int getClaimCounter(){return this.claimCounter;}
     public LocalDate getClaimDate(){return this.claimDate;}
+    public LocalDate getProcessedDate(){return this.processedDate;}
     public double getClaimValue() {return this.claimValue;}
     public boolean getDisbursed() {return this.disbursed;}
+    public String getClaimNote(){return this.claimNote;}
     
     public void disburse(boolean disbursed){
         this.disbursed = disbursed;

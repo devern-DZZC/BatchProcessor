@@ -14,6 +14,9 @@ public class Mainframe{
         this.MAX_DATE = 60;
     }
     
+    public ArrayList getClients(){return this.clients;}
+    public int getMAX_DATE(){return MAX_DATE;}
+    
     public void addClient(String fullName, String DOB){
         InsuredPerson person = new InsuredPerson(fullName, DOB);
         this.clients.add(person);

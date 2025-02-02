@@ -44,11 +44,10 @@ public class InsuredPerson{
     }
     
     public void recordDisbursements(double value){
-        for(Claim c: claims){
-            if(c.getDisbursed()){
-                this.disbursements += value;
-            }
-        }
+        if(value > 0)
+            this.disbursements += value;
+        else
+            System.out.println("Error...Value must be greater than zero");
     }
     
     public String toString(){
