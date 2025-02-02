@@ -60,7 +60,7 @@ public class InsuredPerson{
         NumberFormat currency = NumberFormat.getCurrencyInstance();
         String formattedAmount = currency.format(getDisbursements());
         
-        output += "DISBURSEMENTS: " + formattedAmount;
+        output += "DISBURSEMENTS: " + formattedAmount + "\n";
         return output;
     }
 }

@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.File;
+import java.time.LocalDate;
 
 public class InsuranceApplication{
     public static void main(String[] args){
@@ -18,12 +19,14 @@ public class InsuranceApplication{
                 
                 // InsuredPerson takes 2 parameters
                 if(size == 2){
-                    mainframe.addClient(parameters[0], parameters[1]);
+                    LocalDate date = mainframe.convertDate(parameters[1]);
+                    mainframe.addClient(parameters[0], date.toString());
                 }
                 
                 // Claims takes 3 parameters
                 else if(size == 3){
-                    mainframe.addClaim(Integer.parseInt(parameters[0]), parameters[1], Double.parseDouble(parameters[3]));
+                    LocalDate date = mainframe.convertDate(parameters[1]);
+                    mainframe.addClaim(Integer.parseInt(parameters[0]), date.toString(), Double.parseDouble(parameters[2]));
                 }
                 
             }
@@ -33,7 +36,7 @@ public class InsuranceApplication{
         }
         
         mainframe.processClaims();
-        mainframe.getReports();
+        System.out.println(mainframe.getReports());
             
     }
 }

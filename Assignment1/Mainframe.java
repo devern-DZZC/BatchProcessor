@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import java.time.temporal.ChronoUnit;
 
 public class Mainframe{
     private ArrayList<InsuredPerson> clients;
@@ -17,7 +20,7 @@ public class Mainframe{
     }
     
     public void addClaim(int clientIndex, String claimDate, double claimValue){
-        if(clientIndex > 0 && clientIndex < clients.size()){
+        if(clientIndex >= 0 && clientIndex < clients.size()){
             InsuredPerson person = this.clients.get(clientIndex);
             if(person != null)
                 person.addClaim(claimDate, claimValue);
@@ -27,8 +30,7 @@ public class Mainframe{
     
     public boolean validateDayRange(LocalDate claimDate){
         LocalDate currDate = LocalDate.now();
-        Period period = Period.between(claimDate, currDate);
-        int days = period.getDays();
+        long days = ChronoUnit.DAYS.between(claimDate, currDate);
         if(days > 60 || claimDate.isAfter(currDate))
             return false;
         else
@@ -58,5 +60,24 @@ public class Mainframe{
                 output += client.toString() + "\n";
         }
         return output;
+    }
+    
+    public LocalDate convertDate(String dateString){
+        if(dateString == null)
+            return null;
+            
+        try{
+            String[] parts = dateString.split(" ");
+            String day = parts[0].substring(0, (parts[0].length()-2));
+            String cleanDate = day + " " + parts[1] + " " + parts[2];
+            
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ENGLISH);
+            LocalDate date = LocalDate.parse(cleanDate, formatter);
+            return date;
+        }
+        catch(Exception e){
+            return null;
+        }
+        
     }
 }

@@ -52,7 +52,7 @@ public class Claim{
         String output ="CLAIM NO: " + getClaimNo() + " " + getClaimDate() + " " + formattedAmount + " PAID: " + bool + 
         " PROCESSED ON: " + this.processedDate;
         
-        if (this.claimNote != null){
+        if (!this.claimNote.equals("")){
             output += "\n NOTE:" + this.claimNote;
         }
         
